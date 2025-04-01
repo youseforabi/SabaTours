@@ -1,74 +1,140 @@
 .navbar {
-  background-color: #18458B !important;
-
-  .logo {
-    height: 25px;
-  }
-
-  .nav-link {
-    color: white;
-    display: flex;
-    align-items: center;
-    gap: 5px;
-  }
-.dropdown-menu a{
-  color: white;
+  background-color: white !important;
+  padding: 10px 20px;
 }
-  .btn-info {
-    background-color: #3ea2ff;
-    border: none;
 
-    &:hover {
-      background-color: #2680d4;
-    }
+.logo {
+  height: 30px;
+}
+
+.nav-link {
+  color: black;
+  font-weight: 500;
+  margin: 0 10px;
+  transition: color 0.1.8s ;
+}
+
+.nav-link:hover {
+  color: #18458B;
+}
+
+/* أنيميشن القائمة المنسدلة */
+.animate-dropdown {
+  transform: translateY(-10px);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease-in-out;
+}
+
+.nav-item.dropdown:hover .animate-dropdown {
+  transform: translateY(0);
+  opacity: 1;
+  visibility: visible;
+  display: block;
+}
+
+/* أنيميشن أيقونة السهم */
+.dropdown-icon {
+  transition: transform 0.3s ease-in-out;
+}
+
+.nav-item.dropdown:hover .dropdown-icon {
+  transform: rotate(180deg);
+}
+
+/* تخصيص القائمة المنسدلة */
+.dropdown-menu {
+  background-color: white;
+  border: none;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 10px 0;
+  border-radius: 8px;
+  min-width: 200px;
+}
+
+/* تخصيص عناصر القائمة */
+.dropdown-item {
+  color: black;
+  font-size: 16px;
+  padding: 10px 20px;
+  transition: all 0.2s;
+  position: relative;
+}
+
+/* إضافة الخط الجانبي عند الهوفر */
+.dropdown-item:hover {
+  background-color: #f8f9fa;
+  padding-left: 30px;
+}
+
+.dropdown-item:hover::before {
+  content: "–";
+  position: absolute;
+  left: 10px;
+  color: #007bff;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+/* تحسين مظهر القائمة */
+.nav-item.dropdown:hover .dropdown-menu {
+  display: block;
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+/* تنسيق صورة الحساب */
+.profile-img {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #ccc;
+}
+
+/* زر القائمة الجانبية */
+.navbar-toggler {
+  border: none;
+}
+
+/* أنيميشن للقائمة الجانبية في الموبايل */
+@media (max-width: 992px) {
+  .navbar-collapse {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease-in-out;
+  }
+
+  .offcanvas-body .nav-item {
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 8px;
+    margin-bottom: 8px;
+  }
+  .offcanvas-body .nav-item:first-child {
+    border-top: 1px solid #ccc;
+  }
+  .offcanvas-body .nav-item:last-child {
+    border-bottom: none;
+  }
+
+  .navbar-collapse.show {
+    max-height: 500px;
+  }
+
+  .navbar-nav {
+    flex-direction: column;
   }
 
   .nav-item {
-    position: relative;
-    margin: 10px;
+    width: 100%;
   }
 
-  .dropdown-menu {
-    background-color: #18458B;
+  .d-flex.align-items-center {
+    flex-direction: column;
+    align-items: center !important;
   }
-
-  @media (max-width: 992px) {
-    .navbar-collapse {
-      position: absolute;
-      top: 100%;
-      right: 5px;
-      width: auto; /* ✅ جعل القائمة تأخذ عرض المحتوى فقط */
-      background-color: #18458B;
-      padding: 10px;
-      text-align: center;
-      box-shadow: -2px 2px 5px rgba(0, 0, 0, 0.2);
-      border-radius: 5px;
-      z-index: 1111111;
-    }
-
-    .navbar-nav {
-      flex-direction: column;
-      align-items: center; /* ✅ توسيط العناصر داخل القائمة */
-      width: 100%;
-    }
-
-    .nav-item {
-      width: 100%;
-      padding: 3px 0;
-      margin: 0;
-    }
-
-    .nav-link {
-      display: block;
-      padding: 10px 15px;
-      color: white !important;
-    }
-
-    .d-flex.align-items-center {
-      flex-direction: column;
-      align-items: center !important;
-      padding: 0;
-      gap: 5px;
-    }
-  }
+ .collapse{
+  background-color: #dfe2e7 !important;
+ } 
 }
