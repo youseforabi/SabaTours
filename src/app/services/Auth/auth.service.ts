@@ -31,7 +31,9 @@ export class AuthService {
         .pipe(
           tap((res: any) => {
             if (res?.token) {
-              this.setToken(res.token);
+              // this.setToken(res.token);
+              // console.log(res.token);
+              
               
             }
           }),
@@ -74,6 +76,26 @@ export class AuthService {
 
     return this.http.post(`${this.baseUrl}/Auth/resend-otp`, formData)
       .pipe(catchError(this.handleError));
+  }
+
+  updateProfile(formData : FormData):Observable<any>{
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${localStorage.getItem('token')}` // لو في توكن
+    });
+    return this.http.put(`${this.baseUrl}/Auth/update-profile`, formData, { headers });
+
+  }
+
+  changePassword(OldPassword: string, NewPassword: string, ConfirmNewPassword: string): Observable<any> {
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${localStorage.getItem('token')}`
+    });
+    const formData = new FormData();
+    formData.append('OldPassword', OldPassword);
+    formData.append('NewPassword', NewPassword);
+    formData.append('ConfirmNewPassword', ConfirmNewPassword);
+
+    return this.http.put(`${this.baseUrl}/Auth/change-password`, formData, { headers });
   }
 
 }

@@ -1,5 +1,7 @@
 export const environment = {
     production: false,
-    apiUrl: 'http://sabatoursapi.runasp.net/api'
+    apiUrl: 'https://sabatoursapi.runasp.net/api',
+    apiUlrDashboard:'https://sabatoursapi.runasp.net/api/Dashboard'
   };
+  
   

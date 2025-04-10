@@ -1,165 +1,245 @@
 
-.featured-sectionNow {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 20px;
-    padding: 40px;
-    background-color: black;
-    color: white;
-  
-    .text-contentNow {
-      flex: 1;
-  
-      h2 {
-        font-size: 28px;
-        font-weight: bold;
-      }
-  
-      p {
-        font-size: 16px;
-        margin-bottom: 20px;
-      }
-  
-      .explore-btnNow {
-        color: black;
-        padding: 12px 20px;
-        font-size: 16px;
-        font-weight: bold;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        transition: 0.3s;
-      }
-    }
-  
-    .cards-containerNow {
-      flex: 2;
-      display: flex;
-      gap: 20px;
-  
-      .tour-cardNow {
-        background: #1e1e1e;
-        border-radius: 12px;
-        overflow: hidden;
-        box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.2);
-        transition: 0.3s;
-        max-width: 350px;
-        position: relative;
-  
-        &:hover {
-          transform: translateY(-5px);
-        }
-  
-        .tour-image-containerNow {
-          position: relative;
-          width: 100%;
-          height: 200px;
-          overflow: hidden;
-  
-          .tour-imageNow {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-          }
-  
-          .tour-price-badgeNow {
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            background: rgba(0, 0, 255, 0.8);
-            color: white;
-            padding: 5px 10px;
-            font-size: 14px;
-            border-radius: 5px;
-            font-weight: bold;
-          }
-        }
-  
-        .tour-detailsNow {
-          padding: 15px;
-          text-align: left;
-          position: relative;
-  
-          .tour-titleNow {
-            font-size: 18px;
-            font-weight: bold;
-            color: white;
-          }
-  
-          /* ✅ ✅ ✅ تعديل هذا الجزء ليطابق الصورة ✅ ✅ ✅ */
-          .tour-infoNow {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 10px;
-          }
-  
-          .location-boxNow {
-            display: flex;
-            flex-direction: column;
-            color: #ffb800;
-  
-            .tour-locationNow {
-              font-size: 10px;
-              font-weight: bold;
-            }
-  
-            .tour-addressNow {
-              font-size: 10px;
-              color: #ddd;
-            }
-          }
-  
-          .rating-boxNow {
-            display: flex;
-            align-items: center;
-            color: white;
-            padding: 5px 10px;
-            border-radius: 5px;
-  
-            .rating-labelNow {
-              font-size: 10px;
-              font-weight: bold;
-              margin-right: 5px;
-            }
-  
-            .rating-valueNow {
-              padding: 3px 7px;
-              border-radius: 3px;
-              font-size: 10px;
-              font-weight: bold;
-            }
-          }
-  
-          .tour-commentsNow {
-            font-size: 12px;
-            color: #ccc;
-            text-align: right;
-          }
-        }
-      }
-    }
-  }
-  
-  /* 🔹 ✅ تصميم متجاوب */
-  @media (max-width: 1024px) {
-    .featured-sectionNow {
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      margin-top: 200px;
-      margin-bottom: 550px;
-  
-      .text-contentNow {
-        max-width: 100%;
-      }
-  
-      .cards-containerNow {
-        flex-direction: column;
-        align-items: center;
-      }
-    }
-  }
-  
 
+.featured-tours {
+  font-family: 'Arial', sans-serif;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  color: #333;
+
+  .header {
+    text-align: center;
+    margin-bottom: 2rem;
+
+    h2 {
+      font-size: 2rem;
+      color: #2c3e50;
+      margin-bottom: 0.5rem;
+    }
+
+    p {
+      color: #7f8c8d;
+      margin-bottom: 1rem;
+    }
+
+  
+    }
+  }
+
+  .categories {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+
+    .category {
+      padding: 0.5rem 1.5rem;
+      border: 1px solid #ddd;
+      background-color: #F5F2F2;
+      cursor: pointer;
+      transition: all 0.3s;
+
+      &.active {
+        background: #0D62E2;
+        color: white;
+      }
+
+      &:hover:not(.active) {
+        background: #f8f9fa;
+      }
+    }
+  }
+
+  .tours-grid {
+    min-height: 300px; // لمنع القفز عند التصفية
+    transition: all 0.3s ease;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+
+    .tour-card {
+      cursor: pointer;
+
+      background: white;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      transition: box-shadow 0.3s;
+      animation: fadeIn 0.5s ease;
+      
+      &:hover {
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      }
+    
+      &:hover .tour-image img {
+        transform: scale(1.1);
+      }
+    
+      .tour-image {
+        position: relative;
+        height: 200px;
+        overflow: hidden;
+    
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          transition: transform 0.5s ease-in-out;
+          
+        }
+    
+        .tour-type-badge {
+          position: absolute;
+          left: 10px;
+          top: 20px;
+          background: #3498db;
+          color: white;
+          padding: 6px 12px;
+          font-size: 0.8rem;
+          font-weight: bold;
+          text-transform: uppercase;
+          border-top-right-radius: 4px;
+          border-bottom-right-radius: 4px;
+          box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    
+          // ألوان مختلفة لكل نوع
+          &.type-Guide {
+            background: #0D62E2; // أزرق
+          }
+          
+          &.type-Classical {
+            background: #0D62E2; // أحمر
+          }
+          
+          &.type-day {
+            background: #0D62E2; // أخضر
+          }
+        }
+      }
+
+
+        
+      .tour-header {
+        padding: 15px;
+        .location-rating {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          margin-bottom: 0.5rem;
+          justify-content: space-between;
+      
+          h3 {
+            margin: 0;
+            font-size: 1.0rem;
+            color: #64666C;
+          }
+      
+          .rating {
+            display: flex;
+            align-items: center;
+            background: #f8f9fa;
+            padding: 0.3rem 0.6rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+      
+            .star-icon {
+              color: #f39c12;
+              margin-right: 3px;
+              font-size: 1rem;
+            }
+      
+            .rating-value {
+              font-weight: bold;
+              color: #2c3e50;
+            }
+          }
+        }
+      
+        .subtitle {
+          color: #121212;
+          font-size: 1.2rem;
+          font-weight:bolder;
+          line-height: 1.4;
+        }
+      }
+
+      .tour-details {
+        padding: 1rem 1.5rem;
+        display: flex;
+        justify-content: space-between;
+        color: #7f8c8d;
+        font-size: 0.9rem;
+      }
+
+      .price-section {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 1.5rem;
+        background: #f8f9fa;
+        border-radius: 0 0 8px 8px;
+      
+        .price {
+          color: #64666C;
+          font-weight: bold;
+          font-size: 1.1rem;
+          margin: 0;
+        }
+      
+        .book-now {
+          background: #0D62E2;
+          color: white;
+          border: none;
+          padding: 0.5rem 1.2rem;
+          border-radius: 4px;
+          cursor: pointer;
+          font-weight: bold;
+          transition: all 0.3s ease;
+          text-transform: uppercase;
+          font-size: 0.8rem;
+      
+          &:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+          }
+      
+          &:active {
+            transform: translateY(0);
+          }
+        }
+      }
+    }
+  }
+  
+  
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.no-data-message {
+  background-color: #f8d7da; /* خلفية حمراء فاتحة */
+  color: #721c24; /* لون النص باللون الأحمر الداكن */
+  border: 1px solid #f5c6cb; /* حدود خفيفة باللون الأحمر */
+  padding: 15px;
+  border-radius: 5px; /* زاوية دائرية للخلفية */
+  margin-top: 20px;
+  text-align: center; /* محاذاة النص في الوسط */
+  font-size: 16px; /* حجم الخط */
+  font-weight: bold; /* جعل النص عريض */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* إضافة ظل خفيف حول الرسالة */
+  transition: all 0.3s ease; /* تأثير التغيير السلس عند التفاعل مع الرسالة */
+
+  &:hover {
+    background-color: #f5c6cb; /* تغيير الخلفية عند المرور بالفأرة */
+    border-color: #f1b0b7; /* تغيير حدود الرسالة */
+  }
+}
+
+// .location{
+//   font-size: smaller;
+//   font-weight: 100;
+//   width: 100%;
+// }

@@ -102,32 +102,39 @@ export class RegisterComponent {
     this.errorMessage = null;
   
     const formData = new FormData();
+    const userData: any = {}; // كائن لتخزين البيانات المدخلة من الفورم
+  
     Object.keys(this.registerForm.controls).forEach((key) => {
       const value = this.registerForm.get(key)?.value;
       if (value) {
         formData.append(key, value);
+        userData[key] = value; // تخزين البيانات في الكائن
       }
     });
   
+    // إضافة log لبيانات النموذج
+    console.log('Form Data:', userData);  // إضافة تسجيل بيانات المستخدم
+  
     if (this.selectedFile) {
       formData.append('ProfilePicture', this.selectedFile);
+      const reader = new FileReader();
+      reader.onload = (e: any) => {
+        const base64Image = e.target.result;
+        userData['profilePicture'] = base64Image; // تخزين الصورة في الـ localStorage كـ base64
+        localStorage.setItem('userData', JSON.stringify(userData));
+  
+        console.log('Base64 Image:', base64Image);  // إضافة تسجيل الصورة
+  
+      };
+      reader.readAsDataURL(this.selectedFile);
+    } else {
+      localStorage.setItem('userData', JSON.stringify(userData));
     }
   
     this.authService.register(formData).subscribe({
       next: (response) => {
         this.toastr.success(response.message || 'Registration successful!', 'Success');
         this.loading = false;
-  
-        // ✅ تحويل الصورة إلى base64 وتخزينها في localStorage
-        if (this.selectedFile) {
-          const reader = new FileReader();
-          reader.onload = (e: any) => {
-            const base64Image = e.target.result;
-            localStorage.setItem('profileImage', base64Image);
-          };
-          reader.readAsDataURL(this.selectedFile);
-        }
-  
         this.openOtpModal();
       },
       error: (error) => {
@@ -136,6 +143,8 @@ export class RegisterComponent {
       },
     });
   }
+  
+  
   
 
   verifyOtp() {

@@ -1,0 +1,48 @@
+
+.custom-shadow {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+
+.custom-shadow:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+}
+.card {
+    border-radius: 10px;
+    overflow: hidden;
+    transition: transform 0.2s ease-in-out;
+  
+    &:hover {
+      transform: scale(1.05);
+    }
+  
+    .badge {
+      font-size: 12px;
+      padding: 5px 10px;
+    }
+  
+    .position-relative {
+      .bi-heart, .bi-heart-fill {
+        font-size: 20px;
+        color: red;
+        border: none;
+        background: transparent;
+      }
+    }
+  }
+  
+  .pagination {
+    .page-item {
+      .page-link {
+        color: black;
+        border-radius: 5px;
+        &:hover {
+          background-color: black;
+          color: white;
+        }
+      }
+    }
+  }
+  
